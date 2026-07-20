@@ -12,12 +12,13 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import OpenAI from 'openai';
-import admin from 'firebase-admin';
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getStorage } from 'firebase-admin/storage';
 
-if (!admin.apps.length) {
-  admin.initializeApp();
+if (!getApps().length) {
+  initializeApp();
 }
-const storage = admin.storage();
+const storage = getStorage();
 const BUCKET_NAME = process.env.FIREBASE_STORAGE_BUCKET || 'your-firebase-storage-bucket-name';
 
 

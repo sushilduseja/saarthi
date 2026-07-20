@@ -13,15 +13,16 @@ import {z} from 'genkit';
 import OpenAI from 'openai';
 
 // Import Firebase Admin SDK for server-side Cloud Storage interaction
-import admin from 'firebase-admin';
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getStorage } from 'firebase-admin/storage';
 
 // Initialize Firebase Admin SDK (should be done once in your backend setup)
 // Ensure your GOOGLE_APPLICATION_CREDENTIALS environment variable is set
 // or your Firebase Admin SDK is otherwise configured.
-if (!admin.apps.length) {
-  admin.initializeApp();
+if (!getApps().length) {
+  initializeApp();
 }
-const storage = admin.storage();
+const storage = getStorage();
 const BUCKET_NAME = process.env.FIREBASE_STORAGE_BUCKET || 'your-firebase-storage-bucket-name';
 
 
